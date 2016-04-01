@@ -1,0 +1,1 @@
+document.write('\x3Cscript src="locales/sk-SK.js">\x3C/script>');
