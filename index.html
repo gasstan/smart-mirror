@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="SmartMirror">
-  <head ng-controller="Theme">
+<head ng-controller="Theme">
     <meta charset="utf-8">
     <title>Smart Mirror</title>
 
@@ -11,7 +11,7 @@
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
     <!-- endbower -->
-    
+
     <script src="js/inc/skycons.js"></script>
 
     <!-- App -->
@@ -30,18 +30,21 @@
     <script src="js/traffic-service.js"></script>
     <script src="js/controller.js"></script>
 
+    <!-- RFID -->
+    <script src="http://192.168.1.100:8500/socket.io/socket.io.js" type="text/javascript"></script>
+
     <!-- Styles and Resources -->
-    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="shortcut icon" href="favicon.ico"/>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,800,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" ng-href="css/{{ layoutName }}.css" />
-	<link rel="stylesheet" href="css/weather-icons.css">
+    <link rel="stylesheet" ng-href="css/{{ layoutName }}.css"/>
+    <link rel="stylesheet" href="css/weather-icons.css">
     <!-- bower:css -->
     <!-- endbower -->
-	
-  </head>
-  <body ng-controller="MirrorCtrl as commands" ng-cloak>
-    <div class="top">
-      <div class="top-left">
+
+</head>
+<body ng-controller="MirrorCtrl as commands" ng-cloak>
+<div class="top">
+    <div class="top-left">
         <div class="date grey">{{date.format('dddd')}}, {{date.format('LL')}}</div>
         <div class="time">{{date.format('LT')}}</div>
         <ul class="calendar fade" ng-show="focus == 'default'">
@@ -53,103 +56,127 @@
                 </div>
             </li>
         </ul>
-      </div>
-      <div class="top-right">
+    </div>
+    <div class="top-right">
         <div class="weather">
-          <div class="weather-today">
-            <span class="icon dimmed wi {{currentForcast.wi}}"></span>
-            <canvas id="icon_weather_current" width="90" height="70"></canvas>
-            <span class="tempreture">{{currentForcast.temperature}}&deg;</span>
-          </div>
-          <div class="weather-week-descriptor">
-            <span>{{hourlyForcast.summary}}</span>
-            <span>{{weeklyForcast.summary}}</span>
-          </div>
-          <div class="weather-week" ng-repeat="forcast in weeklyForcast.data" ng-if="$index > 0">
-            <div class="weather-week-day">
-              <span class="day light-grey">{{forcast.day}}</span>
-              <canvas id="icon_weather_{{forcast.counter}}" width="33" height="25"></canvas>
-              <span class="icon-small dimmed wi wi-fw {{forcast.wi}}"></span>
-              <span class="tempreture tempreture-min">{{forcast.temperatureMin}}&deg;</span>
-              <span class="tempreture tempreture-max">{{forcast.temperatureMax}}&deg;</span>
+            <div class="weather-today">
+                <span class="icon dimmed wi {{currentForcast.wi}}"></span>
+                <canvas id="icon_weather_current" width="90" height="70"></canvas>
+                <span class="tempreture">{{currentForcast.temperature}}&deg;</span>
             </div>
-          </div>
-          <!-- Workaround: -->
-          <div style="display: none;" ng-repeat="forcast in weeklyForcast.data" ng-if="$index > 0">
-            <span ng-init="iconLoad('icon_weather_'+forcast.counter, forcast.iconAnimation)"></span>
-          </div>
+            <div class="weather-week-descriptor">
+                <span>{{hourlyForcast.summary}}</span>
+                <span>{{weeklyForcast.summary}}</span>
+            </div>
+            <div class="weather-week" ng-repeat="forcast in weeklyForcast.data" ng-if="$index > 0">
+                <div class="weather-week-day">
+                    <span class="day light-grey">{{forcast.day}}</span>
+                    <canvas id="icon_weather_{{forcast.counter}}" width="33" height="25"></canvas>
+                    <span class="icon-small dimmed wi wi-fw {{forcast.wi}}"></span>
+                    <span class="tempreture tempreture-min">{{forcast.temperatureMin}}&deg;</span>
+                    <span class="tempreture tempreture-max">{{forcast.temperatureMax}}&deg;</span>
+                </div>
+            </div>
+            <!-- Workaround: -->
+            <div style="display: none;" ng-repeat="forcast in weeklyForcast.data" ng-if="$index > 0">
+                <span ng-init="iconLoad('icon_weather_'+forcast.counter, forcast.iconAnimation)"></span>
+            </div>
         </div>
         <div class="traffic">
-          <div ng-show="!traffic.error" class="traffic-information">
-            <span class="time-to">Time to {{traffic.destination}}:</span>
-            <span>{{traffic.duration.humanize()}}</span>
-          </div>
+            <div ng-show="!traffic.error" class="traffic-information">
+                <span class="time-to">Time to {{traffic.destination}}:</span>
+                <span>{{traffic.duration.humanize()}}</span>
+            </div>
         </div>
-      </div>
     </div>
-    <div class="container">
-      <div class="middle-center">
+</div>
+<div class="container">
+    <div class="middle-center">
         <h1>{{greeting}}</h1>
         <h3 ng-show="!(user.name === undefined)">{{user.name}}</h3>
         <!-- <div class="listening" ng-show="listening">Ready: {{focus}}</div> -->
         <div class="contents-box map animate-grow" ng-show="focus == 'map'">
-          <img class="contents map animate-grow" ng-src="{{map}}"/>
+            <img class="contents map animate-grow" ng-src="{{map}}"/>
         </div>
         <div class="contents-box gif animate-grow" ng-show="focus == 'gif'">
-          <img class="contents gif animate-grow" ng-src="{{gifimg}}"/>
+            <img class="contents gif animate-grow" ng-src="{{gifimg}}"/>
         </div>
         <div class="xkcd-container animate-grow" ng-show="focus == 'xkcd'">
-          <img class="xkcd animate-grow" ng-src="{{xkcd}}"/>
+            <img class="xkcd animate-grow" ng-src="{{xkcd}}"/>
         </div>
         <div class="dilbert-container animate-grow" ng-show="focus == 'dilbert'">
-          <img class="dilbert animate-grow" ng-src="{{dilbert.content}}"/>
-          <div class="comic-title">{{dilbert.title}}</div>
+            <img class="dilbert animate-grow" ng-src="{{dilbert.content}}"/>
+            <div class="comic-title">{{dilbert.title}}</div>
         </div>
-      </div>
-      <div class="bottom-center">
+    </div>
+    <div class="bottom-center">
         <!-- Command list -->
         <div class="commands animate-grow" ng-show="focus == 'commands'">
-          <h2>Available Commands</h2>
-          <dl>
-            <dt ng-repeat-start="command in commands">{{command['text']}}</dt>
-            <dd ng-repeat-end>{{command['description']}}</dd>
-          </dl>
-          <small>
-            We are using node <script>document.write(process.versions.node)</script>,
-            Chrome <script>document.write(process.versions.chrome)</script>,
-            and Electron <script>document.write(process.versions.electron)</script>.
-          </small>
+            <h2>Available Commands</h2>
+            <dl>
+                <dt ng-repeat-start="command in commands">{{command['text']}}</dt>
+                <dd ng-repeat-end>{{command['description']}}</dd>
+            </dl>
+            <small>
+                We are using node
+                <script>document.write(process.versions.node)</script>
+                ,
+                Chrome
+                <script>document.write(process.versions.chrome)</script>
+                ,
+                and Electron
+                <script>document.write(process.versions.electron)</script>
+                .
+            </small>
         </div>
 
         <div class="interim-result" ng-bind="interimResult"></div>
-      </div>
-      <div class="colors animate-grow" ng-show="focus == 'colors'">
+    </div>
+    <div class="colors animate-grow" ng-show="focus == 'colors'">
         <div class="color-block" ng-repeat="color in colors" style="background-color:{{color}}"></div>
-      </div>
     </div>
-    <!-- Debug Buttons -->
-    <div class="debug-info">
-      <!--<button ng-click="debug = true">Open Debug</button>-->
-    </div>
-    <div class="debug-info" ng-show="debug == true">
-      <button ng-click="focus = (focus == 'map')?'default':'map'">Map</button>
-      <button ng-click="focus = (focus == 'colors')?'default':'colors'">Colors</button>
-      <button ng-click="focus = (focus == 'commands')?'default':'commands'">Commands</button>
-      <button ng-click="focus = (focus == 'gif')?'default':'gif'">Gif</button>
-      <button ng-click="debug = false">Close Debug</button>
-      <!-- Has results -->
-      <div ng-show="commands.results.length > 0">
+</div>
+<!-- Debug Buttons -->
+<div class="debug-info">
+    <!--<button ng-click="debug = true">Open Debug</button>-->
+</div>
+<div class="debug-info" ng-show="debug == true">
+    <button ng-click="focus = (focus == 'map')?'default':'map'">Map</button>
+    <button ng-click="focus = (focus == 'colors')?'default':'colors'">Colors</button>
+    <button ng-click="focus = (focus == 'commands')?'default':'commands'">Commands</button>
+    <button ng-click="focus = (focus == 'gif')?'default':'gif'">Gif</button>
+    <button ng-click="debug = false">Close Debug</button>
+    <!-- Has results -->
+    <div ng-show="commands.results.length > 0">
         <button class="btn btn-default" ng-click="commands.clearResults()">Clear</button>
         <hr/>
         <ul class="list-group">
-          <li class="list-group-item" ng-repeat="result in commands.results">
-            <span class="badge">{{ result.date | date : 'EEE MMM, yyyy hh:mm:ss a' }}</span>
-            {{ result.content }}
-          </li>
+            <li class="list-group-item" ng-repeat="result in commands.results">
+                <span class="badge">{{ result.date | date : 'EEE MMM, yyyy hh:mm:ss a' }}</span>
+                {{ result.content }}
+            </li>
         </ul>
-      </div>
     </div>
-    <!-- Sleep cover -->
-    <div ng-show="focus == 'sleep'" class="sleep-cover fade"></div>
-  </body>
+</div>
+<!-- Sleep cover -->
+<div ng-show="focus == 'sleep'" class="sleep-cover fade"></div>
+</body>
+
+<!-- RFID -->
+<script>
+    // Connects with Server
+    var socket = io('http://192.168.1.100:8500/');
+
+    socket.on('rfid', function (data) {
+        switch (data) {
+            case 'e342b100':
+                console.log("e342b100");
+                break;
+            default:
+                console.log(data);
+                break;
+        }
+//$(".help").text("Hello, " + data + "!");
+    });
+</script>
 </html>
