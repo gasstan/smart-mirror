@@ -293,7 +293,7 @@
         this.ha = "Ha";
 
         this.showRfidDiv = function(){
-            return true;
+            return false;
         };
     }
 
