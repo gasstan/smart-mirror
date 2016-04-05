@@ -290,12 +290,11 @@
         .controller('Theme', themeController);
 
     function rfidController($scope) {
-
+        $scope.ha = "Ha";
 
         $scope.showRfidDiv = function(){
             return true;
-        }
-
+        };
     }
 
     angular.module('SmartMirror')
