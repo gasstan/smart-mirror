@@ -295,6 +295,13 @@
         this.showRfidDiv = function(){
             return true;
         };
+
+        var socket = io('http://192.168.1.100:8500/');
+
+        socket.on('rfid', function (data) {
+
+            this.ha = data;
+        });
     }
 
     angular.module('SmartMirror')
