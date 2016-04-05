@@ -290,9 +290,9 @@
         .controller('Theme', themeController);
 
     function rfidController($scope) {
-        $scope.ha = "Ha";
+        this.ha = "Ha";
 
-        $scope.showRfidDiv = function(){
+        this.showRfidDiv = function(){
             return true;
         };
     }
