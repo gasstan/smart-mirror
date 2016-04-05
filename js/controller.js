@@ -290,7 +290,7 @@
         .controller('Theme', themeController);
 
     function rfidController($scope) {
-        $scope.read = false;
+        $scope.read = true;
     }
 
     angular.module('SmartMirror')
