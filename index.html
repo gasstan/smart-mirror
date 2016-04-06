@@ -179,8 +179,11 @@
                 console.log(data);
                 break;
         }
-        document.getElementsByClassName("rfid-middle-center")[0].innerHTML = "Hi, " + data + "!";
-        //$(".rfid-middle-center").text("Hi, " + data + "!");
+        document.getElementsByClassName("rfid-middle-center")[0].innerHTML = "<h1>Hi, " + data + "!</h1>";
+
+        setTimeout(function () {
+            document.getElementsByClassName("rfid-middle-center")[0].innerHTML = "<h3>Scan your NFC Card.</h3>";
+        }, 2500);
     });
 </script>
 </html>
