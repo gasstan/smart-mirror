@@ -92,9 +92,9 @@ dt {
 
 .rfid-middle-center {
     display: flex;
-    flex: 1;
+    flex: auto;
     align-items: stretch;
-    align-self: flex-start;
+    align-self: flex-end;
     flex-direction: column;
     width: 100%;
     text-align: center;

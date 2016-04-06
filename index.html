@@ -110,7 +110,7 @@
         </div>
     </div>
     <div class="rfid-middle-center">
-
+        <h3>Scan your NFC Card.</h3>
     </div>
     <div class="bottom-center">
         <!-- Command list -->
@@ -179,7 +179,7 @@
                 console.log(data);
                 break;
         }
-        document.getElementsByClassName("rfid-middle-center")[0].innerHTML = "<h1>Hi, " + data + "!</h1>";
+        document.getElementsByClassName("rfid-middle-center")[0].innerHTML = "<h2>Hi, " + data + "!</h2>";
 
         setTimeout(function () {
             document.getElementsByClassName("rfid-middle-center")[0].innerHTML = "<h3>Scan your NFC Card.</h3>";
