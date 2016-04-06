@@ -179,8 +179,8 @@
                 console.log(data);
                 break;
         }
-
-        $(".rfid-middle-center").text("Hi, " + data + "!");
+        document.getElementsByClassName("rfid-middle-center").innerHTML = "Hi, " + data + "!";
+        //$(".rfid-middle-center").text("Hi, " + data + "!");
     });
 </script>
 </html>
