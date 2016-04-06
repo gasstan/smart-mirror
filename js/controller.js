@@ -1,4 +1,4 @@
-var io = require('http://192.168.1.100:8500/socket.io/socket.io.js');
+var io = require('http://192.168.1.100:8500/socket.io');
 var socket = io('http://192.168.1.100:8500/');
 (function (angular) {
     'use strict';
