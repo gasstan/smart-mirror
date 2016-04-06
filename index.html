@@ -179,10 +179,10 @@
                 console.log(data);
                 break;
         }
-        document.getElementsByClassName("rfid-middle-center")[0].innerHTML = "<h2>Hi, " + data + "!</h2>";
+        document.getElementsByClassName("middle-center")[0].innerHTML = "<h2>Hi, " + data + "!</h2>";
 
         setTimeout(function () {
-            document.getElementsByClassName("rfid-middle-center")[0].innerHTML = "<h3>Scan your NFC Card.</h3>";
+            document.getElementsByClassName("middle-center")[0].innerHTML = "<h3>Scan your NFC Card.</h3>";
         }, 2500);
     });
 </script>
