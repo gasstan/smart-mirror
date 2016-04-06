@@ -1,3 +1,4 @@
+var io = require('socket.io');
 var socket = io('http://192.168.1.100:8500/');
 (function (angular) {
     'use strict';
