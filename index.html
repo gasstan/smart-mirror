@@ -109,9 +109,6 @@
             <div class="comic-title">{{dilbert.title}}</div>
         </div>
     </div>
-    <div class="rfid-middle-center">
-        <h3>Scan your NFC Card.</h3>
-    </div>
     <div class="bottom-center">
         <!-- Command list -->
         <div class="commands animate-grow" ng-show="focus == 'commands'">
@@ -179,10 +176,10 @@
                 console.log(data);
                 break;
         }
-        document.getElementsByClassName("middle-center")[0].innerHTML = "<h2>Hi, " + data + "!</h2>";
+        document.getElementsByClassName("middle-center")[0].innerHTML = "<h1>Hi, " + data + "!</h1>";
 
         setTimeout(function () {
-            document.getElementsByClassName("middle-center")[0].innerHTML = "<h3>Scan your NFC Card.</h3>";
+            document.getElementsByClassName("middle-center")[0].innerHTML = "<h1>{{greeting}}</h1>";
         }, 2500);
     });
 </script>
