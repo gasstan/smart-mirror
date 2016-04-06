@@ -90,17 +90,6 @@ dt {
     justify-content: center;
 }
 
-.rfid-middle-center {
-    display: flex;
-    flex: auto;
-    align-items: stretch;
-    align-self: flex-end;
-    flex-direction: column;
-    width: 100%;
-    text-align: center;
-    justify-content: center;
-}
-
 .bottom-center {
     font-family: 'Open Sans', sans-serif;
     width: 100%;
