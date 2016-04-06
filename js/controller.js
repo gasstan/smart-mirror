@@ -1,3 +1,4 @@
+var socket = io('http://192.168.1.100:8500/');
 (function (angular) {
     'use strict';
 
@@ -292,11 +293,10 @@
     function rfidController() {
         this.ha = "Ha";
 
-        this.showRfidDiv = function(){
+        this.showRfidDiv = function () {
             return true;
         };
 
-        var socket = io('http://192.168.1.100:8500/');
 
         socket.on('rfid', function (data) {
 
