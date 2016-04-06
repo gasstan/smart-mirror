@@ -1,4 +1,3 @@
-
 (function (angular) {
     'use strict';
 
@@ -290,16 +289,5 @@
     angular.module('SmartMirror')
         .controller('Theme', themeController);
 
-    function rfidController() {
-
-        this.ha = "Ha";
-
-        this.showRfidDiv = function () {
-            return true;
-        };
-    }
-
-    angular.module('SmartMirror')
-        .controller('RfidController', rfidController);
 
 }(window.angular));

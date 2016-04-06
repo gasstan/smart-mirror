@@ -109,8 +109,8 @@
             <div class="comic-title">{{dilbert.title}}</div>
         </div>
     </div>
-    <div class="middle-center" ng-controller="RfidController as rfidctrl" ng-show="rfidctrl.showRfidDiv()">
-        <h1>TU SOM {{rfidctrl.ha}}</h1>
+    <div class="rfid-middle-center">
+
     </div>
     <div class="bottom-center">
         <!-- Command list -->
@@ -179,6 +179,8 @@
                 console.log(data);
                 break;
         }
+
+        $(".rfid-middle-center").text("Hi, " + data + "!");
     });
 </script>
 </html>
