@@ -1,6 +1,7 @@
 /**
  * Created by gasstan on 8.4.2016.
  */
+$("head").append('<script type="text/javascript" src="http://192.168.1.100:8500/socket.io/socket.io.js"></script>');
 // Connects with Server
 var socket = io('http://192.168.1.100:8500/');
 
